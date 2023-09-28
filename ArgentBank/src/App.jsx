@@ -1,68 +1,27 @@
-import React from 'react';
-import './App.css';
-import Log from './components/log';
+import React from "react";
+import { Route, Routes, BrowserRouter } from "react-router-dom";
+import Layout from "./Layout/Layout";
+import Index from "./Pages";
+import User from "./Pages/User";
+import SignIn from "./Pages/SignIn";
+import Error from "./Pages/Error";
 
 const App = () => {
   return (
-    <div className='app'>
-      <Log />
-      
-      
+    <div>
+      <BrowserRouter>
+        <Routes>
+          <Route element={<Layout />}>
+            <Route index element={<Index />} />
+            <Route path="/" element={<Index />} />
+            <Route path="/sign-in" element={<SignIn />} />
+            <Route path="/user" element={<User />} />
+            <Route path="*" element={<Error />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 };
 
 export default App;
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import { useState } from 'react'
-
-// import './App.css'
-// import Axios from 'axios';
-
-
-
-// function App() {
-//   const [loginMessage, setLoginMessage] = useState("");
- 
-//   const handleSignup = () => {
-
-//   const user = { firstName: 'Tony', lastName: 'Stark', email: 'tony@stark.com', password: 'password123', userName: 'Iron' }
-
-//     Axios.post('http://localhost:3001/api/v1/user/login', user)
-//       .then(response => {
-//       console.log(response.data);
-//       setLoginMessage(response.data.message);
-//     })
-//       .catch(error => {
-//         console.log(error);
-//       });
-//   }
-
-//   return (
-//     <>
-//       <h1>Test API </h1><br />
-      
-//       <label htmlFor="email"></label>
-//       <input type="text" id="email" placeholder='tony@stark.com'/><br />
-//       <label htmlFor="password"></label>
-//       <input type="text"  placeholder="password123" id="password" />
-//       <br />
-//       <button onClick={handleSignup}>Signup</button>
-//       {loginMessage && <p>{loginMessage}</p>}
-//     </>
-//   )
-// }
-
-// export default App
